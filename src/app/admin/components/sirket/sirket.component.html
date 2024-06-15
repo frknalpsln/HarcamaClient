@@ -1,0 +1,22 @@
+<form #createForm="ngForm" (ngSubmit)="add(createForm)">
+    <div class="mb-3">
+        <label for="adi" class="form-label">Adı</label>
+        <input type="text" class="form-control" id="adi"[(ngModel)]="createModel.sirketAdi" name="sirketAdi">
+    </div>
+    <div class="mb-3">
+        <label for="soyadi" class="form-label">Kod</label>
+        <input type="text" class="form-control" id="soyadi" [(ngModel)]="createModel.sirketKodu"  name="sirketKodu">
+    </div>
+
+    <div class="mb-3">
+        <label for="telefon" class="form-label">Telefon Numarası</label>
+        <input type="text" class="form-control" id="telefon" [(ngModel)]="createModel.telefonNo"  name="telefonNo">
+    </div>
+    <div class="form-group mb-3">
+        <label for="adres">Adres</label>
+        <textarea class="form-control" id="adres" rows="3" [(ngModel)]="createModel.adres"  name="adres"> </textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+</form>

@@ -1,0 +1,65 @@
+<form #registerForm="ngForm" (ngSubmit)="signIn(registerForm)">
+    <div class="mb-3">
+        <label for="adi" class="form-label">Adı</label>
+        <input type="text" class="form-control" id="adi" [(ngModel)]="register.adi" name="adi">
+    </div>
+    <div class="mb-3">
+        <label for="soyadi" class="form-label">Soyadı</label>
+        <input type="text" class="form-control" id="soyadi" [(ngModel)]="register.soyadi" name="soyadi">
+    </div>
+    <div class="mb-3">
+        <label for="tc" class="form-label">Tc</label>
+        <input type="text" class="form-control" id="tc" [(ngModel)]="register.tc" name="tc">
+    </div>
+    <div class="mb-3">
+        <label for="kullaniciAdi" class="form-label">Kullanıcı Adı</label>
+        <input type="text" class="form-control" id="kullaniciAdi" [(ngModel)]="register.kullaniciAdi"
+            name="kullaniciAdi">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" [(ngModel)]="register.email"
+            name="email">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="sifre" class="form-label">Şifre</label>
+        <input type="password" #password class="form-control" id="sifre" [(ngModel)]="register.sifre" name="sifre">
+
+    </div>
+    <div class="mb-3">
+        <label for="sifreTekrari" class="form-label">Şifre Tekrarı</label>
+        <input type="password" class="form-control" id="sifreTekrari" [(ngModel)]="register.sifreTekrari"
+            name="sifreTekrari">
+
+    </div>
+    <div class="mb-3">
+        <label for="telefon" class="form-label">Telefon Numarası</label>
+        <input type="text" class="form-control" id="telefon" [(ngModel)]="register.telefon" name="telefon">
+    </div>
+    <div class="form-group mb-3">
+        <label for="adres">Adres</label>
+        <textarea class="form-control" id="adres" rows="3" [(ngModel)]="register.adres" name="adres"> </textarea>
+    </div>
+    <div class="form-group">
+        <label for="sirketler" >Hangi Şirkette/Şirketlerde Çalışıyorsunuz?</label>
+        <select multiple class="form-control" id="sirketler"  [(ngModel)]="register.sirketId" name="sirketler">           
+            @for (sirket of sirketler; track sirket) {
+                <option [value]="sirket.id">{{sirket.sirketAdi}}</option>
+            }            
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label >Hangi Birimde/Birimlerde Çalışıyorsunuz?</label>
+        <select multiple class="form-control"   [(ngModel)]="register.birimId" name="birimler">           
+            @for (birim of birimler; track birim) {
+                <option [value]="birim.id">{{birim.birimAdi}}</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kayıt Ol</button>  
+    <button type="submit" class="btn btn-primary" routerLink="/ogin">Giriş Yap</button>
+
+</form>

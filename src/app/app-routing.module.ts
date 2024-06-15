@@ -1,32 +1,71 @@
 import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { LayoutsComponent } from './components/layouts/layouts.component';
 import { AuthService } from './services/auth.service';
+import { HomeComponentAdmin } from './admin/components/home/home.component';
+import { LayoutsComponentAdmin } from './admin/components/layouts/layouts.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { LayoutsComponentMuhasebe } from './muhasebe/components/layouts/layouts.component';
+
+import { LayoutsComponentUi } from './ui/components/layouts/layouts.component';
+import { HomeComponentMuhasebe } from './muhasebe/components/home/home.component';
+import { HomeComponentUi } from './ui/components/home/home.component';
+import { RegisterComponent } from './ui/components/register/register.component';
+import { SirketComponent } from './admin/components/sirket/sirket.component';
+import { UsersComponent } from './admin/components/users/users.component';
+
 
 const routes: Routes = [
 
-  {
-    path: 'login', loadChildren: () => import("./components/login/login.module").then(module => module.LoginModule)
-  },
 
+  { path: `login`, component: LoginComponent },
 
   {
-    path : "", 
-    component : LayoutsComponent,
-    canActivateChild : [() => inject(AuthService).isAuthenticated()],
-    children : [
-      {
-        path : "",
-        component : HomeComponent
-      }
+    path: `admin`, component: LayoutsComponentAdmin, 
+    canActivateChild: [() => inject(AuthService).isAuthenticated()],
+    children: [
+      { path: "", component: HomeComponentAdmin },
+      {path : "sirket" , component : SirketComponent},
+      {path : "users" , component : UsersComponent}
+
     ]
   },
-  
-  { path: 'not-found', component: NotFoundComponent },
 
- 
+  {
+    path: `muhasebe`,
+    component: LayoutsComponentMuhasebe,
+    canActivateChild: [() => inject(AuthService).isAuthenticated()],
+    children: [
+      {
+        path: "",
+        component: HomeComponentMuhasebe
+      },
+
+    ]
+  },
+
+  {
+    path: ``,
+    component: LayoutsComponentUi,
+    canActivateChild: [() => inject(AuthService).isAuthenticated()],
+    children: [
+      {
+        path: "",
+        component: HomeComponentUi
+      },
+      {
+        path : "register",
+        component : RegisterComponent
+      }
+
+    ]
+  },
+
+
+
+  { path: '*', component: NotFoundComponent },
+
+
 
 ];
 
